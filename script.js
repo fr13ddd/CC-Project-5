@@ -1,33 +1,50 @@
+let speechRec;
+let sentences = [];
+let isRecognizing = false; // 用于追踪识别状态的变量
+
 function setup() {
-  noCanvas(); // 告诉 p5 不需要画布
+  noCanvas();
 
-  // 初始化语音合成
-  const speech = new p5.Speech();
-  speech.onEnd = speechEnded;
+  speechRec = new p5.SpeechRec("en-US", gotSpeech);
+  speechRec.continuous = true;
+  speechRec.interimResults = false;
 
-  // 初始化语音识别
-  const speechRec = new p5.SpeechRec("en-US", gotSpeech);
-  speechRec.continuous = true; // 设置为连续识别模式
-  speechRec.interimResults = false; // 不显示中间结果
+  let startBtn = document.getElementById("startBtn");
+  let stopBtn = document.getElementById("stopBtn");
+  let statusText = document.getElementById("status");
 
-  // 开始语音识别
-  speechRec.start();
+  startBtn.addEventListener("click", startRecognition);
+  stopBtn.addEventListener("click", stopRecognition);
 
-  // 语音识别回调函数
-  function gotSpeech() {
-    if (speechRec.resultValue) {
-      var inputText = speechRec.resultString; // 识别到的文本
-      document.getElementById("speechText").textContent = inputText; // 显示到页面上
+  function startRecognition() {
+    if (!isRecognizing) {
+      speechRec.start();
+      isRecognizing = true;
+      statusText.textContent = "Status: Listening...";
+      startBtn.disabled = true;
+      stopBtn.disabled = false;
+      console.log("Recognition started");
     }
   }
 
-  // 语音合成结束的回调函数
-  function speechEnded() {
-    console.log("Speech has ended.");
+  function stopRecognition() {
+    if (isRecognizing) {
+      speechRec.stop();
+      isRecognizing = false;
+      statusText.textContent = "Status: Stopped";
+      startBtn.disabled = false;
+      stopBtn.disabled = true;
+      console.log("Recognition stopped");
+    }
   }
 
-  // 开始语音合成
-  speech.speak("Hello, welcome to our interactive project!");
+  function gotSpeech() {
+    if (speechRec.resultValue) {
+      let currentText = speechRec.resultString;
+      sentences.push(currentText);
+      document.getElementById("speechText").textContent =
+        sentences.join(". ") + ".";
+      statusText.textContent = "Status: Result received";
+    }
+  }
 }
-
-// 更新 HTML 文件以显示识别到的文本

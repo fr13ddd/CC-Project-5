@@ -3,16 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Interactive p5 Project</title>
+    <title>Speech Recognition Example</title>
     <link rel="stylesheet" href="style.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.speech.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/IDMNYU/p5.js-speech@0.0.3/lib/p5.speech.js"></script>
   </head>
   <body>
-    <div id="content">
-      <p id="speechText">Say something...</p>
-    </div>
-
+    <button id="startBtn">Start</button>
+    <button id="stopBtn">Stop</button>
+    <p id="status">Status: Ready</p>
+    <p id="speechText">Say something...</p>
     <script src="script.js"></script>
   </body>
 </html>
