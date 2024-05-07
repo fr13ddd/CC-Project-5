@@ -1,26 +1,58 @@
+@font-face {
+  font-family: "DominoMono";
+  src: url(DominoMono-Medium1-Trial.otf);
+}
+
+@font-face {
+  font-family: "DominoMonoBold";
+  src: url(DominoMono-Bold1-Trial.otf);
+}
+
+body {
+  font-family: DominoMonoBold;
+  padding: 20px;
+  line-height: 1.6;
+  background-color: #f7dd72;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Viewport height */
+}
+
 button {
+  font-family: DominoMonoBold;
   padding: 10px 20px;
   font-size: 16px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin: 10px;
-}
-
-#startBtn {
-  background-color: green;
+  background-color: #5ab1bb; /* Green */
   color: white;
-}
-
-#stopBtn {
-  background-color: grey;
-  color: white;
+  transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
 }
 
 button:hover {
-  opacity: 0.8;
+  background-color: #1e152a;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
 }
 
 button:active {
-  opacity: 0.6;
+  transform: translateY(2px); /* Simple press-down animation */
+}
+
+#status {
+  margin-top: 20px;
+  font-size: 18px;
+  color: #333;
+}
+
+#speechText {
+  margin-top: 20px;
+  width: 80%;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  word-wrap: break-word; /* Ensure text does not overflow */
 }
