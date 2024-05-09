@@ -20,6 +20,11 @@ body {
   height: 100vh; /* Viewport height */
 }
 
+h1 {
+  font-family: DominoMonoBold;
+  align-items: center;
+}
+
 button {
   font-family: DominoMonoBold;
   padding: 10px 20px;
